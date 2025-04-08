@@ -2,29 +2,14 @@ const express = require('express');
 const cors = require('cors');
 const { google } = require('googleapis');
 const path = require('path');
-require('dotenv').config();
 
 const app = express();
 app.use(cors());
-
-// const serviceAccountJson = process.env.GOOGLE_SERVICE_ACCOUNT;
-
-// if (!serviceAccountJson) {
-//   console.error('GOOGLE_SERVICE_ACCOUNT is not defined in the environment variables.');
-//   process.exit(1);
-// }
-
-// const serviceAccountCredentials = JSON.parse(serviceAccountJson);
-// console.log("🚀 ~ serviceAccountCredentials:", serviceAccountCredentials);
 
 // Path to your service account key file
 const KEYFILEPATH = path.join(__dirname, 'test-service-account.json');
 
 // Set up GoogleAuth with the drive scopes (using full drive scope to allow folder creation, listing, and sharing)
-// const auth = new google.auth.GoogleAuth({
-//   credentials: serviceAccountCredentials,
-//   scopes: ['https://www.googleapis.com/auth/drive'],
-// });
 const auth = new google.auth.GoogleAuth({
   keyFile: KEYFILEPATH,
   scopes: ['https://www.googleapis.com/auth/drive'],
